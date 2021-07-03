@@ -8,11 +8,12 @@ const customError = (data) => {
 }
 
 const customParams = {
-    endpoint: true
+    endpoint: false,
+    requester: false
 }
 
 const createRequest = (input, callback) => {
-    const validator = new Validator(callback, input, customParams)
+    const validator = new Validator(input, customParams)
     const jobRunID = validator.validated.id
     const endpoint = validator.validated.data.endpoint || 'random'
     const url = `https://zenquotes.io/api/${endpoint}`

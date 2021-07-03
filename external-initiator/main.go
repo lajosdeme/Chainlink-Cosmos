@@ -1,10 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/url"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 )
@@ -40,8 +42,13 @@ func main() {
 	c.Subscribe(message)
 }
 
+type Payload struct {
+	Endpoint  string `json:"endpoint"`
+	Requester string `json:"requester"`
+}
+
 //Start job starts triggers the job on the oracle node
-func startJob() {
+func startJob(requester string) {
 	err := godotenv.Load(".env")
 
 	if err != nil {
@@ -60,7 +67,15 @@ func startJob() {
 		Endpoint:     u,
 	}
 
-	error := cl.Trigger(os.Getenv("JOB_ID"))
+	p := Payload{
+		Endpoint:  "random",
+		Requester: fmt.Sprint(strings.TrimSpace(requester)),
+	}
+
+	fmt.Println("PAYLOAD: ", p)
+	res, _ := json.Marshal(p)
+
+	error := cl.Trigger(os.Getenv("JOB_ID"), res)
 
 	if error != nil {
 		log.Fatal("Error running job: ", error)

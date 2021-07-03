@@ -21,17 +21,19 @@ type Node struct {
 	Endpoint     url.URL
 }
 
-func (cl Node) Trigger(jobId string) error {
+func (cl Node) Trigger(jobId string, payload []byte) error {
 
 	u := cl.Endpoint
 	u.Path = fmt.Sprintf("v2/specs/%s/runs", jobId)
-	request, err := http.NewRequest(http.MethodPost, u.String(), bytes.NewReader([]byte{}))
+	request, err := http.NewRequest(http.MethodPost, u.String(), bytes.NewReader(payload))
 	if err != nil {
 		return err
 	}
 
+	request.Header.Set("Content-Type", "application/json")
 	request.Header.Add(externalInitiatorAccessKeyHeader, cl.AccessKey)
 	request.Header.Add(externalInitiatorSecretHeader, cl.AccessSecret)
+
 	res, err := http.DefaultClient.Do(request)
 	if err != nil {
 		return err

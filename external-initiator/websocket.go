@@ -17,7 +17,6 @@ type wsConn struct {
 	open       bool
 }
 
-//Connect connects to the websocket.
 func (ws WebSocket) Connect() wsConn {
 	c, _, err := websocket.DefaultDialer.Dial(ws.Endpoint, nil)
 	if err != nil {
@@ -31,7 +30,6 @@ func (ws WebSocket) Connect() wsConn {
 	return con
 }
 
-//Subscribe subscribes to transaction events.
 func (con wsConn) Subscribe(message string) {
 	defer con.connection.Close()
 
@@ -61,7 +59,7 @@ func (con wsConn) Subscribe(message string) {
 			txRes.convert(&requesterAddr, &event)
 
 			if event == "RequestQuote" {
-				startJob()
+				startJob(requesterAddr)
 			}
 		}
 	}()
