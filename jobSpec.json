@@ -1,0 +1,19 @@
+{
+    "name": "LINK-EA",
+    "initiators": [
+        {
+            "type": "external",
+            "params": {
+                "name": "linktest",
+                 "body": {
+                        "endpoint": "random"
+                 }
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "type": "link-ea"
+        }
+    ]
+}
