@@ -1,0 +1,39 @@
+syntax = "proto3";
+package lajosdeme.linktest.linktest;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+// this line is used by starport scaffolding # 1
+import "linktest/quote.proto";
+
+option go_package = "github.com/lajosdeme/linktest/x/linktest/types";
+
+// Query defines the gRPC querier service.
+service Query {
+    // this line is used by starport scaffolding # 2
+	rpc Quote(QueryGetQuoteRequest) returns (QueryGetQuoteResponse) {
+		option (google.api.http).get = "/lajosdeme/linktest/linktest/quote/{id}";
+	}
+	rpc QuoteAll(QueryAllQuoteRequest) returns (QueryAllQuoteResponse) {
+		option (google.api.http).get = "/lajosdeme/linktest/linktest/quote";
+	}
+
+}
+
+// this line is used by starport scaffolding # 3
+message QueryGetQuoteRequest {
+	uint64 id = 1;
+}
+
+message QueryGetQuoteResponse {
+	Quote Quote = 1;
+}
+
+message QueryAllQuoteRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllQuoteResponse {
+	repeated Quote Quote = 1;
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}

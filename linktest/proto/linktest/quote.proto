@@ -1,0 +1,14 @@
+syntax = "proto3";
+package lajosdeme.linktest.linktest;
+
+option go_package = "github.com/lajosdeme/linktest/x/linktest/types";
+
+import "gogoproto/gogo.proto";
+
+message Quote {
+  string creator = 1;
+  uint64 id = 2;
+  string requester = 3; 
+  string oracle = 4; 
+  string text = 5; 
+}

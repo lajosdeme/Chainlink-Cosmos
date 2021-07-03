@@ -1,0 +1,51 @@
+syntax = "proto3";
+package lajosdeme.linktest.linktest;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/lajosdeme/linktest/x/linktest/types";
+
+// Msg defines the Msg service.
+service Msg {
+    // this line is used by starport scaffolding # proto/tx/rpc
+  rpc CreateQuote(MsgCreateQuote) returns (MsgCreateQuoteResponse);
+  rpc UpdateQuote(MsgUpdateQuote) returns (MsgUpdateQuoteResponse);
+  rpc DeleteQuote(MsgDeleteQuote) returns (MsgDeleteQuoteResponse);
+  rpc RequestQuote(MsgRequestQuote) returns (MsgRequestQuoteResponse);
+}
+
+// this line is used by starport scaffolding # proto/tx/message
+message MsgCreateQuote {
+  string creator = 1;
+  string requester = 2;
+  string oracle = 3;
+  string text = 4;
+}
+
+message MsgCreateQuoteResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateQuote {
+  string creator = 1;
+  uint64 id = 2;
+  string requester = 3;
+  string oracle = 4;
+  string text = 5;
+}
+
+message MsgUpdateQuoteResponse { }
+
+message MsgDeleteQuote {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteQuoteResponse { }
+
+message MsgRequestQuote {
+  string creator = 1;
+  string requester = 2;
+  string oracle = 3;
+}
+message MsgRequestQuoteResponse { }

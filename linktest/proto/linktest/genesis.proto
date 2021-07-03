@@ -1,0 +1,14 @@
+syntax = "proto3";
+package lajosdeme.linktest.linktest;
+
+// this line is used by starport scaffolding # genesis/proto/import
+import "linktest/quote.proto";
+
+option go_package = "github.com/lajosdeme/linktest/x/linktest/types";
+
+// GenesisState defines the capability module's genesis state.
+message GenesisState {
+    // this line is used by starport scaffolding # genesis/proto/state
+		repeated Quote quoteList = 1; // this line is used by starport scaffolding # genesis/proto/stateField
+}
+

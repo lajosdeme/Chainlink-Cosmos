@@ -1,0 +1,19 @@
+node_modules/
+.npm
+.DS_Store
+DS_Store
+
+# dotenv environment variables file
+.env
+.env.test
+.env.production
+
+# vuepress build output
+.vuepress/dist
+vue/node_modules
+vue/dist
+secret.yml
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
