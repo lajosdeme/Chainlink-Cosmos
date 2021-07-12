@@ -1,7 +1,7 @@
 # Chainlink-Cosmos
 Example project demonstrating how to connect a [Chainlink](https://chain.link/) oracle to a [Cosmos](https://cosmos.network/) blockchain.
 
-This repository is the companion to my Medium article where I explain the whole process in detail.
+This repository is the companion to my [Medium article](https://betterprogramming.pub/connect-a-chainlink-oracle-to-a-cosmos-blockchain-d7934d75bae5) where I explain the whole process in detail.
 
 ## How it works
 I used [Starport](https://cosmos.network/starport/) to set up a minimal Cosmos blockchain that has the ability to store random quotes from users. 
